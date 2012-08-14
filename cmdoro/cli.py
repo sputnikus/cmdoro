@@ -32,7 +32,9 @@ def main_screen(stdscr):
     try:
         while not end:
             working(stdscr, config_dict['work_time'])
-            resting(stdscr, config_dict['rest_time'])
+            end = resting(stdscr, config_dict['rest_time'])
+    except KeyboardInterrupt:
+        return
 
 
 main = curses.wrapper(main_screen)
