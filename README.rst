@@ -7,15 +7,20 @@ CMDoro is dead simple Pomodoro timer for your shell. Currently is completely unt
 
 How to get it running
 ---------------------
-* Install requirements::
+* Install requirements ::
+
     $ pip install -r requirements.txt
-* Write your configuration file (in ``YAML`` format)::
+
+* Write your configuration file (in ``YAML`` format) ::
+
     ---
     work_time: <your work time in seconds>
     rest_time: <your rest time in seconds>
     ...
+
 * Export environment varible ``CMDORO_CONFIG`` with path to your configuration
-* Run it!::
+* Run it! ::
+
     $ ./run
 
 
