@@ -8,3 +8,4 @@
     :copyright: (c) 2012 by Martin Putniorz.
     :license: BSD, see LICENSE for details.
 """
+from cli import main
