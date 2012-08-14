@@ -22,10 +22,10 @@ def countdown(seconds):
         # trailing seconds, we want to count by a minute
         time.sleep(trail)
         seconds -= trail
-        yield seconds / 60
+    yield (seconds / 60)
 
     while seconds > 0:
         # now yield each minute
         time.sleep(60)
         seconds -= 60
-        yield seconds / 60
+        yield (seconds / 60)

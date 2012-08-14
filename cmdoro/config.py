@@ -18,7 +18,7 @@ VALID_OPTIONS = ('work_time', 'rest_time')
 
 
 def loader():
-    """Loads YAML config from path specified in enviroment variable"""
+    """Loads YAML config from path specified in environment variable"""
     path = os.getenv('CMDORO_CONFIG')
     # If config file is not specified, get one from home directory
     if path is None:
