@@ -18,10 +18,9 @@ def countdown(seconds):
     """
     trail = seconds % 60
 
-    if trail:
-        # trailing seconds, we want to count by a minute
-        time.sleep(trail)
-        seconds -= trail
+    # trailing seconds, we want to count by a minute
+    time.sleep(trail)
+    seconds -= trail
     yield (seconds / 60)
 
     while seconds > 0:

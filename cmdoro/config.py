@@ -30,7 +30,7 @@ def loader():
     try:
         validate_config(config_dict)
     except KeyError, e:
-        print e
+        sys.stderr.write(e)
         sys.exit(1)
 
     return config_dict
