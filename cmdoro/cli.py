@@ -14,6 +14,7 @@ import time
 import urwid
 
 from config import loader
+from signals import MinuteSig, DoneSig
 
 
 def countdown(minutes):
