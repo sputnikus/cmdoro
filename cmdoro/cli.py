@@ -26,37 +26,29 @@ class CmdoroWidget(urwid.Text):
         self.work_time = config_dict['work_time']
         self.rest_time = config_dict['rest_time']
 
-        self.started = False
         self.time = self.work_time
         self._context = 'work'
         super(CmdoroWidget, self).__init__('CMDoro version 0.1. Press spacebar \
 and get shit done.')
 
     def update(self):
-        if self.started:
-            if self._context == 'work':
-                self.set_text('Working now. Remaining time: %d minutes'\
-                    % self.time)
-            else:
-                self.set_text('Resting now. Remaining time: %d minutes'\
-                    % self.time)
-        self.time -= 1
+        if self._context == 'work':
+            self.set_text('Working now. Remaining time: %d minutes'\
+                % self.time)
+        else:
+            self.set_text('Resting now. Remaining time: %d minutes'\
+                % self.time)
         if self.time:
+            self.time -= 1
             return True
         else:
             self._emit('switch')
 
-    def start(self):
-        self.started = True
-        self._emit('started')
-
     def keypress(self, size, key):
         if key == ' ':
-            self.start()
+            self._emit('started')
         else:
             return key
-        if not self.started:
-            self.set_text('Neco')
 
     def get_context(self):
         return self._context
@@ -82,8 +74,6 @@ def unhandled_input(key_input):
 
 
 def update_timer(loop, cmdoro):
-    if not cmdoro.started:
-        return
     if cmdoro.update():
         loop.set_alarm_in(60, update_timer, cmdoro)
 
