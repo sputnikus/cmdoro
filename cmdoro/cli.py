@@ -43,9 +43,12 @@ def filler():
     pass
 
 
-def unhandled_input():
-    # TODO urwid
-    pass
+def unhandled_input(key_input):
+    """Exits cmdoro if Q/q or escape is catched
+
+    :param key_input: Key pressed"""
+    if key_input in ('q', 'Q', 'esc'):
+        raise urwid.ExitMainLoop()
 
 
 def working():
