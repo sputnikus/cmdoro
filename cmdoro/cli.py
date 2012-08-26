@@ -32,15 +32,16 @@ def main():
     try:
         config_dict = loader()
     except IOError:
+        text = urwid.Text('CMDoro: Invalid config file!')
+        filler = urwid.Filler(text, 'top')
+        loop = urwid.MainLoop(filler, unhandled_input=unhandled_input)
+        loop.run()
         sys.exit(1)
 
+    text = urwid.Text('CMDoro version 0.1')
+    filler = urwid.Filler(text, 'top')
     loop = urwid.MainLoop(filler, unhandled_input=unhandled_input)
     loop.run()
-
-
-def filler():
-    # TODO urwid
-    pass
 
 
 def unhandled_input(key_input):
@@ -52,10 +53,10 @@ def unhandled_input(key_input):
 
 
 def working():
-    # TODO urwid
+    """Working stage countdown"""
     pass
 
 
 def resting():
-    # TODO urwid
+    """Resting stage countdown"""
     pass
