@@ -8,58 +8,51 @@
     :copyright: (c) 2012 by Martin Putniorz.
     :license: BSD, see LICENSE for details.
 """
-import curses
 import sys
+import time
 
-from timer import countdown
+import urwid
+
 from config import loader
 
 
-def main(stdscr):
-    """Main screen of cmdoro
+def countdown(minutes):
+    """The countdown generator, yields on minute change
 
-    :param stdscr: Intialized curses screen
+    :param minutes: Countdown time in minutes
     """
-    # Basic window color - white on black
-    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
-    # Working color - yellow on black
-    curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
-    # Rest color - green on black
-    curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
 
+    for minute in range(minutes, 0, -1):
+        yield minutes
+        time.sleep(60)
+
+
+def main():
+    """Main screen of cmdoro"""
     try:
         config_dict = loader()
-    except IOError, e:
-        stdscr.addstr(0, 0, 'Problem with config: %s' % e, curses.color_pair(1))
-        stdscr.refresh()
+    except IOError:
         sys.exit(1)
-    end = False
 
-    while not end:
-        working(stdscr, config_dict['work_time'])
-        end = resting(stdscr, config_dict['rest_time'])
+    loop = urwid.MainLoop(filler, unhandled_input=unhandled_input)
+    loop.run()
 
 
-def working(stdscr, work_time):
-    stdscr.clear()
-    stdscr.addstr(0, 0, 'Working now. Remaining time: ', curses.color_pair(1))
-    for minute in countdown(work_time):
-        stdscr.addstr(0, 29, '%d minutes' % minute, curses.color_pair(2))
-        stdscr.refresh()
+def filler():
+    # TODO urwid
+    pass
 
 
-def resting(stdscr, rest_time):
-    stdscr.clear()
-    stdscr.addstr(0, 0, 'Resting now. Remaining time: ', curses.color_pair(1))
-    for minute in countdown(rest_time):
-        stdscr.addstr(0, 29, '%d minutes' % minute, curses.color_pair(3))
-        stdscr.refresh()
+def unhandled_input():
+    # TODO urwid
+    pass
 
-    stdscr.clear()
-    stdscr.addstr('Resting time\'s over! Want to contine? [A/n] ')
-    stdscr.refresh()
-    choice = stdscr.getch()
 
-    if choice not in (ord('n'), ord('N')):
-        return False
-    return True
+def working():
+    # TODO urwid
+    pass
+
+
+def resting():
+    # TODO urwid
+    pass
