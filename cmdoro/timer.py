@@ -11,20 +11,12 @@
 import time
 
 
-def countdown(seconds):
+def countdown(minutes):
     """The countdown generator, yields on minute change
 
-    :param seconds: Countdown time in seconds
+    :param minutes: Countdown time in minutes
     """
-    trail = seconds % 60
 
-    # trailing seconds, we want to count by a minute
-    time.sleep(trail)
-    seconds -= trail
-    yield (seconds / 60)
-
-    while seconds > 0:
-        # now yield each minute
+    for minute in range(minutes, 0, -1):
+        yield minutes
         time.sleep(60)
-        seconds -= 60
-        yield (seconds / 60)
