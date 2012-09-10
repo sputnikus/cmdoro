@@ -2,7 +2,7 @@
 CMDoro: Pomodoro for your shell
 ===============================
 
-CMDoro is dead simple Pomodoro timer for your shell. Currently is completely untested, in some kind of alpha stage (doesn't even has setup.py and stuff)
+CMDoro is dead simple Pomodoro timer for your shell. Currently is completely untested, in some kind of beta (0.1) stage (doesn't even has setup.py and stuff)
 
 
 How to get it running
@@ -14,8 +14,8 @@ How to get it running
 * Write your configuration file (in ``YAML`` format) ::
 
     ---
-    work_time: <your work time in seconds>
-    rest_time: <your rest time in seconds>
+    work_time: <your work time in minutes>
+    rest_time: <your rest time in minutes>
     ...
 
 * Export environment varible ``CMDORO_CONFIG`` with path to your configuration
