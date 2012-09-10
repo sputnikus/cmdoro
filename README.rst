@@ -2,7 +2,7 @@
 CMDoro: Pomodoro for your shell
 ===============================
 
-CMDoro is dead simple Pomodoro timer for your shell. Currently is completely untested, in some kind of alpha stage (doesn't even has setup.py and stuff)
+CMDoro is dead simple Pomodoro timer for your shell. Currently is completely untested, in some kind of beta (0.1) stage (doesn't even has setup.py and stuff)
 
 
 How to get it running
