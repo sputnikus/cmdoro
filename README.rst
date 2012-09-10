@@ -14,8 +14,8 @@ How to get it running
 * Write your configuration file (in ``YAML`` format) ::
 
     ---
-    work_time: <your work time in seconds>
-    rest_time: <your rest time in seconds>
+    work_time: <your work time in minutes>
+    rest_time: <your rest time in minutes>
     ...
 
 * Export environment varible ``CMDORO_CONFIG`` with path to your configuration
