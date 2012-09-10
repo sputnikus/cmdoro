@@ -18,7 +18,8 @@ from config import loader
 PALETTE = [
     ('info', 'white', '', 'standout'),
     ('work', 'yellow', '', 'standout'),
-    ('rest', 'light green', '', 'standout'),]
+    ('rest', 'light green', '', 'standout'),
+    ('error', 'light red', ''),]
 
 
 class CmdoroWidget(urwid.Text):
@@ -97,7 +98,7 @@ def main():
     try:
         cmdoro = CmdoroWidget()
     except IOError:
-        text = urwid.Text('CMDoro: Invalid config file!')
+        text = urwid.Text(('error', 'CMDoro: Invalid config file!'))
         filler = urwid.Filler(text, 'top')
         loop = urwid.MainLoop(filler, PALETTE, unhandled_input=unhandled_input)
         loop.run()
