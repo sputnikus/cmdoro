@@ -15,6 +15,12 @@ import urwid
 from config import loader
 
 
+PALETTE = [
+    ('info', 'white', '', 'standout'),
+    ('work', 'yellow', '', 'standout'),
+    ('rest', 'light green', '', 'standout'),]
+
+
 class CmdoroWidget(urwid.Text):
     """CMDoro timer widget"""
 
@@ -33,11 +39,11 @@ and get shit done.')
 
     def update(self):
         if self._context == 'work':
-            self.set_text('Working now. Remaining time: %d minutes'\
-                % self.time)
+            self.set_text([('info', 'Working now. Remaining time: '),
+                        ('work', '%d minutes' % self.time)])
         else:
-            self.set_text('Resting now. Remaining time: %d minutes'\
-                % self.time)
+            self.set_text([('info', 'Resting now. Remaining time: '),
+                        ('rest', '%d minutes' % self.time)])
         if self.time:
             self.time -= 1
             return True
@@ -93,13 +99,13 @@ def main():
     except IOError:
         text = urwid.Text('CMDoro: Invalid config file!')
         filler = urwid.Filler(text, 'top')
-        loop = urwid.MainLoop(filler, unhandled_input=unhandled_input)
+        loop = urwid.MainLoop(filler, PALETTE, unhandled_input=unhandled_input)
         loop.run()
         sys.exit(1)
 
     cmdoro_fill = urwid.Filler(cmdoro, 'top')
 
-    loop = urwid.MainLoop(cmdoro_fill, unhandled_input=unhandled_input)
+    loop = urwid.MainLoop(cmdoro_fill, PALETTE, unhandled_input=unhandled_input)
     urwid.connect_signal(cmdoro, 'started', switch_update_timer, loop)
     urwid.connect_signal(cmdoro, 'switch', switch_context)
     loop.run()
